@@ -1,0 +1,562 @@
+/* ==========================================================================
+   GLOBAL VARIABLES (Trading Dark Theme)
+   ========================================================================== */
+:root {
+  --bg-main: #121212;         /* Deep dark background */
+  --bg-card: #1e1e1e;         /* Slightly lighter card background */
+  --bg-card-hover: #2a2a2a;   /* Card hover effect */
+  --primary: #00E676;         /* Trading "Profit" Green */
+  --primary-hover: #00C853;   /* Darker green for hover */
+  --text-main: #ffffff;       /* Pure white text */
+  --text-muted: #aaaaaa;      /* Grey text for secondary info */
+  --border-color: #333333;    /* Subtle borders */
+  --danger: #ff5252;          /* Red for delete/danger */
+}
+
+/* ==========================================================================
+   BASE STYLES
+   ========================================================================== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+* {
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+h1, h2, h3, h4 {
+  margin-top: 0;
+}
+
+.text-muted {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   LAYOUT COMPONENTS (Navbar & Footer)
+   ========================================================================== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.navbar h2 {
+  margin: 0;
+  color: var(--primary); /* Brand color */
+}
+
+.navbar ul {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.navbar a, .navbar span {
+  color: var(--text-main);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.navbar a:hover, .navbar span:hover {
+  color: var(--primary);
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  padding: 10px 0;
+  min-width: 150px;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 8px 20px;
+}
+
+.dropdown-menu li:hover {
+  background-color: var(--bg-card-hover);
+}
+
+/* Global Search */
+.global-search {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px;
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.global-search input {
+  width: 300px;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--bg-card);
+  padding: 40px 20px 20px;
+  margin-top: 60px;
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-container div {
+  margin-bottom: 20px;
+}
+
+.footer-bottom {
+  text-align: center;
+  color: var(--text-muted);
+  margin-top: 20px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 20px;
+}
+
+/* ==========================================================================
+   UI ELEMENTS (Cards, Buttons, Inputs)
+   ========================================================================== */
+.card {
+  background-color: var(--bg-card);
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+button {
+  background-color: var(--primary);
+  color: #000; /* Dark text on bright button */
+  border: none;
+  padding: 10px 18px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Secondary/Danger buttons inside cards */
+button.danger {
+  background-color: var(--danger);
+  color: white;
+}
+
+button.danger:hover {
+  background-color: #d50000;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0 16px;
+  background-color: var(--bg-main);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  border-radius: 4px;
+  outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Form specific layout */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--text-muted);
+}
+
+/* Radio and Checkbox alignment */
+.radio-group, .checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 10px 0 20px;
+}
+
+.radio-group label, .checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+input[type="radio"], input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+  accent-color: var(--primary);
+}
+
+/* ==========================================================================
+   AUTH & FORMS
+   ========================================================================== */
+.auth-box {
+  max-width: 400px;
+  margin: 50px auto;
+  background-color: var(--bg-card);
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.auth-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+.auth-box button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+}
+
+/* ==========================================================================
+   UTILITIES (Modals, Toasts, Admin)
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+
+.modal .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 18px;
+  padding: 5px;
+}
+
+.modal .close-btn:hover {
+  color: var(--danger);
+}
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: var(--primary);
+  color: #000;
+  padding: 15px 25px;
+  border-radius: 4px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  z-index: 1000;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Admin Layout Layout */
+.admin-layout {
+  display: flex;
+  min-height: 80vh;
+}
+
+.admin-sidebar {
+  width: 200px;
+  background-color: var(--bg-card);
+  padding: 20px;
+  border-right: 1px solid var(--border-color);
+}
+
+.admin-sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.admin-sidebar li {
+  padding: 10px 0;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.admin-sidebar li:hover, .admin-sidebar li.active {
+  color: var(--primary);
+}
+
+.admin-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: var(--bg-card);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.filter-bar input, .filter-bar select {
+  margin: 0;
+  width: auto;
+  min-width: 150px;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .global-search {
+    flex-direction: column;
+  }
+
+  .global-search input {
+    width: 100%;
+  }
+
+  .admin-layout {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .admin-sidebar ul {
+    display: flex;
+    gap: 20px;
+  }
+
+  .filter-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-bar input, .filter-bar select {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   WIDGET PUZZLE STYLES
+   ========================================================================== */
+.puzzle-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.puzzle-layout {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+  min-height: 500px;
+}
+
+.puzzle-column {
+  flex: 1;
+  background-color: var(--bg-card);
+  border: 2px dashed var(--border-color);
+  border-radius: 12px;
+  padding: 20px;
+  transition: border-color 0.3s ease;
+}
+
+.puzzle-column h3 {
+  margin-bottom: 20px;
+  color: var(--primary);
+  font-size: 1.1rem;
+}
+
+.pieces-grid, .board-dropzone {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 15px;
+  min-height: 400px;
+}
+
+.puzzle-piece {
+  background-color: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 15px;
+  cursor: grab;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.2s, background-color 0.2s;
+  user-select: none;
+}
+
+.puzzle-piece:active {
+  cursor: grabbing;
+}
+
+.puzzle-piece:hover {
+  background-color: var(--bg-card-hover);
+  transform: translateY(-3px);
+}
+
+.puzzle-piece.placed {
+  background-color: rgba(0, 230, 118, 0.1);
+  border-color: var(--primary);
+}
+
+.piece-icon {
+  font-size: 2rem;
+}
+
+.piece-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.drop-placeholder {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  border: 1px dashed var(--border-color);
+  border-radius: 8px;
+}
+
+.puzzle-success {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: var(--primary);
+  color: #000;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@media (max-width: 768px) {
+  .puzzle-layout {
+    flex-direction: column;
+  }
+}
