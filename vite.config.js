@@ -6,3 +6,7 @@ export default defineConfig({
   plugins: [react()],
   base: './',
 })
+
+export default {
+  base: "/tradingtom/", // your repo name
+};
