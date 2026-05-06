@@ -3,6 +3,31 @@ import { loginUser, registerUser, isAdminEmail } from "../services/api";
 
 const AuthContext = createContext();
 
+const identifyAptrinsic = (user) => {
+  if (!window.aptrinsic) return;
+
+  window.aptrinsic("onReady", function () {
+    window.aptrinsic(
+      "identify",
+      {
+        id: user.email,
+        email: user.email,
+        firstName: user.name
+      },
+      {
+        id: "IBM",
+        name: "International Business Machine",
+        Program: "Platinum"
+      }
+    );
+
+    console.log("PX Ready + Identify Done");
+    // Note: Gainsight PX does not provide a 'getAccountId' getter method.
+    // The SDK is designed to send data to Gainsight rather than retrieve state back into your app.
+    // Since you are passing "IBM", you can manage this ID directly in your app's state if needed.
+  });
+};
+
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -14,6 +39,7 @@ export const AuthProvider = ({ children }) => {
       const parsed = JSON.parse(saved);
       setUser(parsed);
       setIsAdmin(isAdminEmail(parsed.email));
+      identifyAptrinsic(parsed);
     }
   }, []);
 
@@ -24,6 +50,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("sessionUser", JSON.stringify(data));
     setUser(data);
     setIsAdmin(isAdminEmail(data.email));
+    identifyAptrinsic(data);
 
     return { success: true };
   };
@@ -35,6 +62,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("sessionUser", JSON.stringify(user));
     setUser(user);
     setIsAdmin(isAdminEmail(user.email));
+    identifyAptrinsic(user);
 
     return { success: true };
   };
