@@ -7,12 +7,35 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
 
+  // Helper function to identify the user in Gainsight PX with dynamic data
+  const identifyUser = (userData) => {
+    if (window.aptrinsic && userData) {
+      window.aptrinsic("identify",
+        {
+          id: userData.id || userData.email,
+          email: userData.email,
+          firstName: userData.name,
+          signUpDate: userData.createdAt || Date.now(),
+          plan: userData.plan || "free"
+        },
+        {
+          id: userData.accountId || userData.email,
+          name: userData.companyName || "Individual",
+          Program: userData.plan || "Basic"
+        }
+      );
+    }
+  };
+
   useEffect(() => {
     const saved = localStorage.getItem("sessionUser");
     if (saved) {
       const parsed = JSON.parse(saved);
       setUser(parsed);
       setIsAdmin(isAdminEmail(parsed.email));
+
+      // Identify the user again on page refresh to maintain tracking
+      identifyUser(parsed);
     }
   }, []);
 
@@ -23,6 +46,9 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("sessionUser", JSON.stringify(data));
     setUser(data);
     setIsAdmin(isAdminEmail(data.email));
+
+    // Identify the user in Gainsight PX after a new signup
+    identifyUser(data);
 
     return { success: true };
   };
@@ -35,25 +61,8 @@ export const AuthProvider = ({ children }) => {
     setUser(user);
     setIsAdmin(isAdminEmail(user.email));
 
-    //passing user and account objects:
-    aptrinsic("identify",
-      {
-      //User Fields
-        "id": "unique-user-id", // Required for logged in app users
-        "email": "userEmail@address.com",
-        "firstName": "John",
-        "lastName": "Smith",
-        "signUpDate": 1522697426479, //unix time in ms
-        "plan" : "gold", //Custom attributes - please create those custom attributes in Aptrinsic via Account Settings to be tracked.
-        "price" : 95.5,
-        "userHash": "" // optional transient for HMAC identification
-      },
-      {
-      //Account Fields
-        "id":"IBM", //Required
-        "name":"International Business Machine",
-        "Program": "Platinum" // flat custom attributes
-    });
+    // Identify the user in Gainsight PX after login
+    identifyUser(user);
 
     return { success: true };
   };
@@ -62,6 +71,11 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("sessionUser");
     setUser(null);
     setIsAdmin(false);
+
+    // Reset Gainsight PX tracking on logout
+    if (window.aptrinsic) {
+      window.aptrinsic("reset");
+    }
   };
 
   return (
