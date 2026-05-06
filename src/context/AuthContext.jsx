@@ -19,9 +19,12 @@ export const AuthProvider = ({ children }) => {
           plan: userData.plan || "free"
         },
         {
-          id: userData.accountId || userData.email,
-          name: userData.companyName || "Individual",
-          Program: userData.plan || "Basic"
+          // id: userData.accountId || userData.email,
+          // name: userData.companyName || "Individual",
+          // Program: userData.plan || "Basic"
+          "id": "IBM",
+          "name": "International Business Machine",
+          "Program": "Platinum"
         }
       );
     }
