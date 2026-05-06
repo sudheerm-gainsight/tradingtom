@@ -3,35 +3,39 @@ import { loginUser, registerUser, isAdminEmail } from "../services/api";
 
 const AuthContext = createContext();
 
-const identifyAptrinsic = (user) => {
-  if (!window.aptrinsic) return;
-
-  window.aptrinsic("onReady", function () {
-    window.aptrinsic(
-      "identify",
-      {
-        id: user.email,
-        email: user.email,
-        firstName: user.name
-      },
-      {
-        id: "IBM",
-        name: "International Business Machine",
-        Program: "Platinum"
-      }
-    );
-
-    console.log("PX Ready + Identify Done");
-    // Note: Gainsight PX does not provide a 'getAccountId' getter method.
-    // The SDK is designed to send data to Gainsight rather than retrieve state back into your app.
-    // Since you are passing "IBM", you can manage this ID directly in your app's state if needed.
-  });
-};
-
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
 
+  // Helper function to identify the user in Gainsight PX with dynamic data
+  const identifyUser = (userData) => {
+    if (!userData) return;
+
+    const tryIdentify = () => {
+      if (typeof window.aptrinsic === "function") {
+        window.aptrinsic("identify",
+          {
+            id: userData.email,
+            email: userData.email,
+            firstName: userData.name || "User",
+            signUpDate: userData.createdAt || Date.now()
+          },
+          {
+            id: "TradingTom_Community",
+            name: "TradingTom Platform"
+          }
+        );
+
+        console.log("PX Identify SUCCESS");
+        console.log("AccountId:", window.aptrinsic("getAccountId"));
+      } else {
+        // Retry until PX loads
+        setTimeout(tryIdentify, 500);
+      }
+    };
+
+    tryIdentify();
+  };
 
   useEffect(() => {
     const saved = localStorage.getItem("sessionUser");
@@ -39,7 +43,9 @@ export const AuthProvider = ({ children }) => {
       const parsed = JSON.parse(saved);
       setUser(parsed);
       setIsAdmin(isAdminEmail(parsed.email));
-      identifyAptrinsic(parsed);
+
+      // Identify the user again on page refresh to maintain tracking
+      identifyUser(parsed);
     }
   }, []);
 
@@ -50,7 +56,9 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("sessionUser", JSON.stringify(data));
     setUser(data);
     setIsAdmin(isAdminEmail(data.email));
-    identifyAptrinsic(data);
+
+    // Identify the user in Gainsight PX after a new signup
+    identifyUser(data);
 
     return { success: true };
   };
@@ -62,7 +70,9 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("sessionUser", JSON.stringify(user));
     setUser(user);
     setIsAdmin(isAdminEmail(user.email));
-    identifyAptrinsic(user);
+
+    // Identify the user in Gainsight PX after login
+    identifyUser(user);
 
     return { success: true };
   };
