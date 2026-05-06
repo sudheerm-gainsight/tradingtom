@@ -8,17 +8,25 @@ function App() {
 
     const user = JSON.parse(saved);
 
-    window.aptrinsic("identify",
-      {
-        id: user.email,
-        email: user.email,
-        firstName: user.name
-      },
-      {
-        id: user.email,
-        name: "User Account"
-      }
-    );
+    //  THIS IS THE FIX
+    window.aptrinsic("onReady", function () {
+      window.aptrinsic("identify",
+        {
+          id: user.email,
+          email: user.email,
+          firstName: user.name
+        },
+        {
+          id: "IBM",
+          name: "International Business Machine",
+          Program: "Platinum"
+        }
+      );
+
+      console.log("PX Ready + Identify Done");
+      console.log("Account:", window.aptrinsic("getAccountId"));
+    });
+
   }, []);
 
   return <AppRoutes />;
