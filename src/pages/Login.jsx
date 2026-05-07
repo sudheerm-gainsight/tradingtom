@@ -9,8 +9,9 @@ function Login() {
   // useNavigate hook allows us to programmatically redirect the user
   const navigate = useNavigate();
 
-  // Local state to track the user's input for email
+  // Local state to track the user's input for email and phone number
   const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   // Function called when the user clicks the "Login" button
   const handleLogin = () => {
@@ -21,7 +22,7 @@ function Login() {
     }
 
     // Attempt to log in using the function from AuthContext
-    const res = login(email);
+    const res = login(email, phoneNumber);
 
     // If login fails, show an alert and stop
     if (res.error) {
@@ -47,12 +48,23 @@ function Login() {
 
       {/* The .form-group wrapper provides consistent margins between inputs */}
       <div className="form-group">
-        <label>Email Address</label>
+        <label>Email Address (Mandatory)</label>
         <input
           type="email"
           placeholder="Enter your email"
+          required
           // Update the email state whenever the user types
           onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+
+      <div className="form-group">
+        <label>Phone Number (Optional)</label>
+        <input
+          type="tel"
+          placeholder="Enter your phone number"
+          // Update the phone number state whenever the user types
+          onChange={(e) => setPhoneNumber(e.target.value)}
         />
       </div>
 

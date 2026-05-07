@@ -17,11 +17,13 @@ export const AuthProvider = ({ children }) => {
           id: userData.email,
           email: userData.email,
           firstName: userData.name || "User",
-          signUpDate: userData.createdAt || Date.now()
+          signUpDate: userData.createdAt || Date.now(),
+          PhoneNumber: Number(userData.phoneNumber) || 0
         },
         {
           id: "TradingTom_Community",
-          name: "TradingTom Platform"
+          name: "TradingTom Platform",
+          CompanyStartYear: 2025
         }
       );
 
@@ -42,15 +44,17 @@ export const AuthProvider = ({ children }) => {
     return { success: true };
   };
 
-  const login = (email) => {
+  const login = (email, phoneNumber) => {
     const user = loginUser(email);
     if (!user) return { error: "User not found or invalid email" };
 
-    localStorage.setItem("sessionUser", JSON.stringify(user));
-    setUser(user);
-    setIsAdmin(isAdminEmail(user.email));
+    const userWithPhone = { ...user, phoneNumber };
 
-    identifyUser(user); //  ONLY HERE
+    localStorage.setItem("sessionUser", JSON.stringify(userWithPhone));
+    setUser(userWithPhone);
+    setIsAdmin(isAdminEmail(userWithPhone.email));
+
+    identifyUser(userWithPhone); //  ONLY HERE
 
     return { success: true };
   };
