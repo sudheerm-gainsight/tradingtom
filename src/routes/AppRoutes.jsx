@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 import MainLayout from "../layout/MainLayout";
@@ -20,30 +20,26 @@ function AppRoutes() {
   const { isAdmin } = useAuth();
 
   return (
-    <BrowserRouter basename="/tradingtom/">
-      <Routes>
+    <Routes>
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/courses" element={<Courses />} />
+        <Route path="/course/:id" element={<CourseDetail />} />
+        <Route path="/payment/:id" element={<Payment />} />
+        <Route path="/news" element={<News />} />
+        <Route path="/forum" element={<Forum />} />
+        <Route path="/widget-puzzle" element={<WidgetPuzzle />} />
+      </Route>
 
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/courses" element={<Courses />} />
-          <Route path="/course/:id" element={<CourseDetail />} />
-          <Route path="/payment/:id" element={<Payment />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/forum" element={<Forum />} />
-          <Route path="/widget-puzzle" element={<WidgetPuzzle />} />
-        </Route>
-
-        <Route
-          path="/admin"
-          element={isAdmin ? <AdminLayout /> : <Login />}
-        >
-          <Route index element={<Dashboard />} />
-        </Route>
-
-      </Routes>
-    </BrowserRouter>
+      <Route
+        path="/admin"
+        element={isAdmin ? <AdminLayout /> : <Login />}
+      >
+        <Route index element={<Dashboard />} />
+      </Route>
+    </Routes>
   );
 }
 
