@@ -15,6 +15,7 @@ import Forum from "../pages/Forum";
 import WidgetPuzzle from "../pages/WidgetPuzzle";
 
 import Dashboard from "../admin/Dashboard";
+import AdminCoursesList from "../admin/AdminCoursesList";
 
 function AppRoutes() {
   const { isAdmin } = useAuth();
@@ -38,6 +39,7 @@ function AppRoutes() {
         element={isAdmin ? <AdminLayout /> : <Login />}
       >
         <Route index element={<Dashboard />} />
+        <Route path="courses" element={<AdminCoursesList />} />
       </Route>
     </Routes>
   );
