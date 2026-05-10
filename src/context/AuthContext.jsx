@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { loginUser, registerUser, isAdminEmail } from "../services/api";
 
 const AuthContext = createContext();
@@ -6,6 +6,22 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
+
+  // Load user from localStorage when the app starts or refreshes
+  useEffect(() => {
+    const savedUser = localStorage.getItem("sessionUser");
+    if (savedUser) {
+      try {
+        const parsedUser = JSON.parse(savedUser);
+        setUser(parsedUser);
+        setIsAdmin(isAdminEmail(parsedUser.email));
+        identifyUser(parsedUser);
+      } catch (e) {
+        console.error("Failed to parse session user");
+      }
+    }
+  }, []);
+
 
   //  FINAL IDENTIFY FUNCTION
   const identifyUser = (userData) => {
