@@ -40,6 +40,11 @@ export const isAdminEmail = (email) => {
 // ---------- COURSES ----------
 export const getCourses = () => getData("courses");
 
+export const getCourseById = (id) => {
+  const courses = getData("courses");
+  return courses.find(c => c.id === id);
+};
+
 export const seedCourses = () => {
   const courses = getData("courses");
   if (courses.length === 0) {

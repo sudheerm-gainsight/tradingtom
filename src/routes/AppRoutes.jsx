@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Courses from "../pages/Courses";
 import CourseDetail from "../pages/CourseDetail";
+import AboutCourse from "../pages/AboutCourse";
 import Payment from "../pages/Payment";
 import News from "../pages/News";
 import Forum from "../pages/Forum";
@@ -29,6 +30,7 @@ function AppRoutes() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/course/:id" element={<CourseDetail />} />
+        <Route path="/course/:id/about" element={<AboutCourse />} />
         <Route path="/payment/:id" element={<Payment />} />
         <Route path="/news" element={<News />} />
         <Route path="/forum" element={<Forum />} />

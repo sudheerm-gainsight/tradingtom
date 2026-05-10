@@ -39,8 +39,15 @@ function CourseDetail() {
 
   return (
     <div>
-      <h2>Course Modules</h2>
-      <p className="text-muted">Start learning with our comprehensive modules.</p>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <div>
+          <h2>Course Modules</h2>
+          <p className="text-muted">Start learning with our comprehensive modules.</p>
+        </div>
+        <button onClick={() => navigate(`/course/${id}/about`)} style={{ padding: '8px 16px', background: 'var(--bg-card)', color: 'var(--text-main)', border: '1px solid var(--border-color)' }}>
+          About Course
+        </button>
+      </div>
 
       {/* Map over the modules and render each one */}
       {modules.map((m, index) => {
