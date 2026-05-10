@@ -1,13 +1,13 @@
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import AppRoutes from "./routes/AppRoutes";
 import PXTracker from "./components/PXTracker";
 
 function App() {
   return (
-    <HashRouter>
+    <BrowserRouter basename="/tradingtom/">
       <PXTracker />
       <AppRoutes />
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
