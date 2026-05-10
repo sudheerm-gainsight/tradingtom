@@ -17,6 +17,7 @@ function AdminLayout() {
         <ul style={{ flex: 1, listStyle: 'none', padding: 0 }}>
           <li style={{ marginBottom: '10px' }}><Link to="/admin" style={{ color: 'var(--text-main)', textDecoration: 'none' }}>Dashboard</Link></li>
           <li style={{ marginBottom: '10px' }}><Link to="/admin/courses" style={{ color: 'var(--text-main)', textDecoration: 'none' }}>Courses List</Link></li>
+          <li style={{ marginBottom: '10px' }}><Link to="/admin/modules" style={{ color: 'var(--text-main)', textDecoration: 'none' }}>Manage Modules</Link></li>
         </ul>
         <div style={{ marginTop: 'auto' }}>
           <button onClick={handleLogout} style={{ width: '100%' }}>Logout</button>
