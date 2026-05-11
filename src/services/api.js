@@ -50,7 +50,13 @@ export const seedCourses = () => {
   if (courses.length === 0) {
     setData("courses", [
       { id: 1, title: "Trading Basics", level: "Beginner", price: 499 },
-      { id: 2, title: "Advanced Strategies", level: "Advanced", price: 999 }
+      { id: 2, title: "Advanced Strategies", level: "Advanced", price: 999 },
+      { id: 3, title: "Options Trading Mastery", level: "Advanced", price: 1499 },
+      { id: 4, title: "Forex for Beginners", level: "Beginner", price: 599 },
+      { id: 5, title: "Cryptocurrency Investing", level: "Intermediate", price: 799 },
+      { id: 6, title: "Day Trading Setup", level: "Intermediate", price: 899 },
+      { id: 7, title: "Swing Trading Secrets", level: "Advanced", price: 1299 },
+      { id: 8, title: "Algorithmic Trading Intro", level: "Advanced", price: 1999 }
     ]);
   }
 };
@@ -67,7 +73,14 @@ export const seedModules = () => {
     setData("modules", [
       { id: 1, courseId: 1, title: "Intro", isFree: true, video: "https://www.youtube.com/embed/ysz5S6PUM-U" },
       { id: 2, courseId: 1, title: "Market Basics", isFree: true, video: "https://www.youtube.com/embed/ysz5S6PUM-U" },
-      { id: 3, courseId: 1, title: "Technical Analysis", isFree: false, video: "https://www.youtube.com/embed/ysz5S6PUM-U" }
+      { id: 3, courseId: 1, title: "Technical Analysis", isFree: false, video: "https://www.youtube.com/embed/ysz5S6PUM-U" },
+      { id: 4, courseId: 2, title: "Advanced Strategies Overview", isFree: true, video: "https://www.youtube.com/embed/ysz5S6PUM-U" },
+      { id: 5, courseId: 3, title: "Introduction to Options", isFree: true, video: "https://www.youtube.com/embed/ysz5S6PUM-U" },
+      { id: 6, courseId: 4, title: "What is Forex?", isFree: true, video: "https://www.youtube.com/embed/ysz5S6PUM-U" },
+      { id: 7, courseId: 5, title: "Crypto Wallets & Exchanges", isFree: true, video: "https://www.youtube.com/embed/ysz5S6PUM-U" },
+      { id: 8, courseId: 6, title: "Setting Up Your Charts", isFree: true, video: "https://www.youtube.com/embed/ysz5S6PUM-U" },
+      { id: 9, courseId: 7, title: "Finding the Right Swing", isFree: true, video: "https://www.youtube.com/embed/ysz5S6PUM-U" },
+      { id: 10, courseId: 8, title: "Python for Trading", isFree: true, video: "https://www.youtube.com/embed/ysz5S6PUM-U" }
     ]);
   }
 };
