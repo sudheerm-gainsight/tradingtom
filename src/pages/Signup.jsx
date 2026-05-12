@@ -32,8 +32,8 @@ function Signup() {
       return;
     }
 
-    // On success, redirect to the courses page
-    navigate("/courses");
+    // On success, redirect to the home page with about content
+    navigate("/home");
   };
 
   return (

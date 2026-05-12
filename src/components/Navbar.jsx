@@ -9,7 +9,7 @@ function Navbar() {
 
   const handleLogout = () => {
     logout();
-    navigate("/");
+    navigate("/home");
   };
 
   return (
@@ -18,7 +18,7 @@ function Navbar() {
 
       <ul>
         <li style={{ fontSize: '1.2rem', cursor: 'default' }}>🤖</li>
-        <li><Link to="/">Home</Link></li>
+        <li><Link to="/home">Home</Link></li>
         <li><Link to="/courses">Courses</Link></li>
 
         {/* Dropdown Menu Implementation (Click to toggle) */}

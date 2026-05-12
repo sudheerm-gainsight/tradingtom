@@ -36,8 +36,8 @@ function Login() {
     if (email === "mrsudheer2009@gmail.com") {
       navigate("/admin");
     } else {
-      // Otherwise, redirect normal users directly to the courses page
-      navigate("/courses");
+      // Redirect normal users to the home page with about content
+      navigate("/home");
     }
   };
 
