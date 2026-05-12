@@ -17,7 +17,8 @@ function Navbar() {
       <h2>TradingTom</h2>
 
       <ul>
-        <li><Link to="/">🤖 Home</Link></li>
+        <li style={{ fontSize: '1.2rem', cursor: 'default' }}>🤖</li>
+        <li><Link to="/">Home</Link></li>
         <li><Link to="/courses">Courses</Link></li>
 
         {/* Dropdown Menu Implementation (Click to toggle) */}
