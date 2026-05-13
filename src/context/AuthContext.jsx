@@ -4,21 +4,28 @@ import { loginUser, registerUser, isAdminEmail } from "../services/api";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [user, setUser] = useState(() => {
+    const saved = localStorage.getItem("sessionUser");
+    try {
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
 
-  // Load user from localStorage when the app starts or refreshes
+  const [isAdmin, setIsAdmin] = useState(() => {
+    const saved = localStorage.getItem("sessionUser");
+    try {
+      return saved ? isAdminEmail(JSON.parse(saved).email) : false;
+    } catch {
+      return false;
+    }
+  });
+
+  // Identify user to PX when the app starts or refreshes
   useEffect(() => {
-    const savedUser = localStorage.getItem("sessionUser");
-    if (savedUser) {
-      try {
-        const parsedUser = JSON.parse(savedUser);
-        setUser(parsedUser);
-        setIsAdmin(isAdminEmail(parsedUser.email));
-        identifyUser(parsedUser);
-      } catch (e) {
-        console.error("Failed to parse session user");
-      }
+    if (user) {
+      identifyUser(user);
     }
   }, []);
 
