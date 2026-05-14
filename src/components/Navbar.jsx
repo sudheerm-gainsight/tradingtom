@@ -20,7 +20,7 @@ function Navbar() {
         <li>
           <button 
             onClick={() => window.aptrinsic && window.aptrinsic('track', 'see_engagement')}
-            style={{ padding: '5px 10px', fontSize: '0.9rem', marginRight: '10px', background: 'var(--primary)', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+            style={{ padding: '5px 10px', fontSize: '0.9rem', marginRight: '10px', background: 'var(--primary)', color: 'black', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
           >
             click to see engagement
           </button>
