@@ -17,6 +17,14 @@ function Navbar() {
       <h2>TradingTom</h2>
 
       <ul>
+        <li>
+          <button 
+            onClick={() => window.aptrinsic && window.aptrinsic('track', 'see_engagement')}
+            style={{ padding: '5px 10px', fontSize: '0.9rem', marginRight: '10px', background: 'var(--primary)', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+          >
+            click to see engagement
+          </button>
+        </li>
         <li style={{ fontSize: '1.2rem', cursor: 'default' }}>🤖</li>
         <li><Link to="/home">Home</Link></li>
         <li><Link to="/courses">Courses</Link></li>

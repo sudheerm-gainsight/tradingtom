@@ -18,6 +18,7 @@ import WidgetPuzzle from "../pages/WidgetPuzzle";
 import Dashboard from "../admin/Dashboard";
 import AdminCoursesList from "../admin/AdminCoursesList";
 import ManageModules from "../admin/ManageModules";
+import ViewDeleteModules from "../admin/ViewDeleteModules";
 
 function AppRoutes() {
   const { isAdmin } = useAuth();
@@ -45,6 +46,7 @@ function AppRoutes() {
         <Route index element={<Dashboard />} />
         <Route path="courses" element={<AdminCoursesList />} />
         <Route path="modules" element={<ManageModules />} />
+        <Route path="view-modules" element={<ViewDeleteModules />} />
       </Route>
     </Routes>
   );

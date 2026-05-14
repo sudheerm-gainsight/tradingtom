@@ -67,6 +67,14 @@ export const getModulesByCourse = (courseId) => {
   return modules.filter(m => m.courseId === courseId);
 };
 
+export const getAllModules = () => getData("modules");
+
+export const deleteModule = (moduleId) => {
+  const modules = getData("modules");
+  const filtered = modules.filter(m => m.id !== moduleId);
+  setData("modules", filtered);
+};
+
 export const seedModules = () => {
   const modules = getData("modules");
   if (modules.length === 0) {
