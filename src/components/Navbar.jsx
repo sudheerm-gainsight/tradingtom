@@ -16,9 +16,9 @@ function Navbar() {
     <nav className="navbar">
       <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
         <h2 style={{ margin: 0 }}>TradingTom</h2>
-        <button 
+        <button
           id="see-engagement-btn"
-          onClick={() => window.aptrinsic && window.aptrinsic('track', 'see_engagement')}
+          onClick={() => window.aptrinsic && window.aptrinsic('track', 'click_to_see_eng_button_click')}
           style={{ padding: '5px 10px', fontSize: '0.9rem', background: 'var(--primary)', color: 'black', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
         >
           click to see engagement
