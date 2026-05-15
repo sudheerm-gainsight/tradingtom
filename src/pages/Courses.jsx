@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 function Courses() {
   // Local state to hold the list of courses fetched from the API
   const [courses, setCourses] = useState([]);
-  
+
   // Local state for all our filters
   const [search, setSearch] = useState("");
   const [level, setLevel] = useState("All");
@@ -43,7 +43,7 @@ function Courses() {
         />
 
         {/* DROPDOWN FILTER */}
-        <select value={level} onChange={(e) => setLevel(e.target.value)}>
+        <select className="level-filter" value={level} onChange={(e) => setLevel(e.target.value)}>
           <option value="All">All Levels</option>
           <option value="Beginner">Beginner</option>
           <option value="Advanced">Advanced</option>
@@ -51,10 +51,10 @@ function Courses() {
 
         {/* CHECKBOX FILTER */}
         <label style={{ display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer' }}>
-          <input 
-            type="checkbox" 
+          <input
+            type="checkbox"
             checked={cheapOnly}
-            onChange={(e) => setCheapOnly(e.target.checked)} 
+            onChange={(e) => setCheapOnly(e.target.checked)}
           />
           Under ₹500
         </label>
