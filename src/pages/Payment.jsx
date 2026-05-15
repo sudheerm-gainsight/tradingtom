@@ -26,7 +26,7 @@ function Payment() {
 
   // Handle checking/unchecking courses
   const toggleCourseSelection = (courseId) => {
-    setSelectedCourses(prev => 
+    setSelectedCourses(prev =>
       prev.includes(courseId)
         ? prev.filter(cId => cId !== courseId)
         : [...prev, courseId]
@@ -54,9 +54,9 @@ function Payment() {
     selectedCourses.forEach(courseId => {
       purchaseCourse(user.id, courseId);
     });
-    
+
     alert("Payment Successful! You now have full access to the selected courses.");
-    
+
     // Redirect logic based on selection count
     if (selectedCourses.length === 1) {
       navigate(`/course/${selectedCourses[0]}`);
@@ -82,8 +82,8 @@ function Payment() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxHeight: '200px', overflowY: 'auto' }}>
           {courses.map(course => (
             <label key={course.id} style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}>
-              <input 
-                type="checkbox" 
+              <input
+                type="checkbox"
                 checked={selectedCourses.includes(course.id)}
                 onChange={() => toggleCourseSelection(course.id)}
               />
@@ -97,8 +97,8 @@ function Payment() {
       {/* New Form Inputs */}
       <div className="form-group">
         <label>Select Date</label>
-        <input 
-          type="date" 
+        <input
+          type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
         />
@@ -118,8 +118,14 @@ function Payment() {
       </div>
 
       {/* Note: Explicitly requested black text color */}
-      <button 
-        onClick={handlePay} 
+      <button
+        onClick={() => {
+          { handlePay };
+          if (window.aptrinsic) {
+            window.aptrinsic('track', 'Payment_done_tracking');
+          }
+        }}
+
         style={{ width: '100%', marginTop: '10px', color: 'black' }}
       >
         Pay Now
