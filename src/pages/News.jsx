@@ -8,6 +8,9 @@ function News() {
   // Local state for the search query
   const [search, setSearch] = useState("");
 
+  // State for popup modal
+  const [selectedNews, setSelectedNews] = useState(null);
+
   // Fetch news from an external free API when the component mounts
   useEffect(() => {
     // Using jsonplaceholder as a free mock API to simulate news articles
@@ -59,17 +62,51 @@ function News() {
         /* Render the list of news articles dynamically */
         filteredNews.length > 0 ? (
           filteredNews.map(n => (
-            <div className="card" key={n.id}>
+            <div className="card" key={n.id} style={{ display: 'flex', flexDirection: 'column' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <h4 style={{ margin: 0, color: 'var(--primary)', textTransform: 'capitalize' }}>{n.title}</h4>
                 <small className="text-muted">{n.date}</small>
               </div>
-              <p style={{ marginTop: '10px' }}>{n.description}</p>
+              <p style={{ marginTop: '10px', flex: 1 }}>{n.description}</p>
+              
+              <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '15px' }}>
+                <button 
+                  className="see-news-btn"
+                  onClick={() => setSelectedNews(n)}
+                  style={{ padding: '8px 16px', background: 'var(--primary)', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+                >
+                  see news
+                </button>
+              </div>
             </div>
           ))
         ) : (
           <p>No recent news available matching your search.</p>
         )
+      )}
+
+      {/* Popup Modal for Selected News */}
+      {selectedNews && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
+          backgroundColor: 'rgba(0,0,0,0.6)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000
+        }}>
+          <div className="card" style={{ maxWidth: '600px', width: '90%', position: 'relative', margin: '20px' }}>
+            <button 
+              onClick={() => setSelectedNews(null)}
+              style={{ position: 'absolute', top: '15px', right: '15px', background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--text-main)' }}
+            >
+              &times;
+            </button>
+            <h3 style={{ color: 'var(--primary)', textTransform: 'capitalize', marginTop: '10px', paddingRight: '20px' }}>
+              {selectedNews.title}
+            </h3>
+            <small className="text-muted">{selectedNews.date}</small>
+            <p style={{ marginTop: '20px', lineHeight: '1.6', fontSize: '1.1rem' }}>
+              {selectedNews.description}
+            </p>
+          </div>
+        </div>
       )}
     </div>
   );
