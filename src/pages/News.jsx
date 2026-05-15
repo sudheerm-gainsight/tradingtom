@@ -73,7 +73,7 @@ function News() {
                 <button 
                   className="see-news-btn"
                   onClick={() => setSelectedNews(n)}
-                  style={{ padding: '8px 16px', background: 'var(--primary)', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+                  style={{ padding: '8px 16px', background: 'var(--primary)', color: 'black', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
                 >
                   see news
                 </button>
