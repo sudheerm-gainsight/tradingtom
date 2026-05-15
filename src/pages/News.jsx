@@ -4,7 +4,7 @@ function News() {
   // Local state to store the news articles
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   // Local state for the search query
   const [search, setSearch] = useState("");
 
@@ -35,8 +35,8 @@ function News() {
 
   // Compute the filtered news dynamically before rendering
   // The list updates instantly without needing a search button
-  const filteredNews = news.filter(n => 
-    n.title.toLowerCase().includes(search.toLowerCase()) || 
+  const filteredNews = news.filter(n =>
+    n.title.toLowerCase().includes(search.toLowerCase()) ||
     n.description.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -68,11 +68,16 @@ function News() {
                 <small className="text-muted">{n.date}</small>
               </div>
               <p style={{ marginTop: '10px', flex: 1 }}>{n.description}</p>
-              
+
               <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '15px' }}>
-                <button 
+                <button
                   className="see-news-btn"
-                  onClick={() => setSelectedNews(n)}
+                  onClick={() => {
+                    setSelectedNews(n);
+                    if (window.aptrinsic) {
+                      window.aptrinsic('track', 'See_news_button_click_eng');
+                    }
+                  }}
                   style={{ padding: '8px 16px', background: 'var(--primary)', color: 'black', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
                 >
                   see news
@@ -92,7 +97,7 @@ function News() {
           backgroundColor: 'rgba(0,0,0,0.6)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000
         }}>
           <div className="card" style={{ maxWidth: '600px', width: '90%', position: 'relative', margin: '20px' }}>
-            <button 
+            <button
               onClick={() => setSelectedNews(null)}
               style={{ position: 'absolute', top: '15px', right: '15px', background: 'transparent', border: 'none', fontSize: '1.5rem', cursor: 'pointer', color: 'var(--text-main)' }}
             >
