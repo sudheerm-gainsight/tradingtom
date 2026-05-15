@@ -122,7 +122,8 @@ function Payment() {
         onClick={() => {
           { handlePay };
           if (window.aptrinsic) {
-            window.aptrinsic('track', 'Payment_done_tracking');
+            window.aptrinsic('track', 'Payment_done_tracking',
+              { "amount_paid": totalAmount, "click": "Payment_done_tracking", "payement_date": date, "status": status });
           }
         }}
 
