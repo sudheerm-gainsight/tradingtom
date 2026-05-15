@@ -29,6 +29,7 @@ function Navbar() {
         <li style={{ fontSize: '1.2rem', cursor: 'default' }}>🤖</li>
         <li><Link to="/home">Home</Link></li>
         <li><Link to="/courses">Courses</Link></li>
+        <li><Link to="/payment">Payment</Link></li>
 
         {/* Dropdown Menu Implementation (Click to toggle) */}
         <li className="dropdown" onClick={() => setDropdownOpen(!dropdownOpen)}>

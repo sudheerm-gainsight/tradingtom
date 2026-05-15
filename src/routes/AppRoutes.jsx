@@ -33,6 +33,7 @@ function AppRoutes() {
         <Route path="/courses" element={<Courses />} />
         <Route path="/course/:id" element={<CourseDetail />} />
         <Route path="/course/:id/about" element={<AboutCourse />} />
+        <Route path="/payment" element={<Payment />} />
         <Route path="/payment/:id" element={<Payment />} />
         <Route path="/news" element={<News />} />
         <Route path="/forum" element={<Forum />} />
