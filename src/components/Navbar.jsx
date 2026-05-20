@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
@@ -6,6 +6,20 @@ function Navbar() {
   const { user, logout, isAdmin } = useAuth();
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -32,7 +46,7 @@ function Navbar() {
         <li><Link to="/payment">Payment</Link></li>
 
         {/* Dropdown Menu Implementation (Click to toggle) */}
-        <li className="dropdown" onClick={() => setDropdownOpen(!dropdownOpen)}>
+        <li className="dropdown" ref={dropdownRef} onClick={() => setDropdownOpen(!dropdownOpen)}>
           <span>More ▾</span>
           <ul className="dropdown-menu" style={{ display: dropdownOpen ? 'block' : 'none' }}>
             <li><Link to="/news">News</Link></li>
