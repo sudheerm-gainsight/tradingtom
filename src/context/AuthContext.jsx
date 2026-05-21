@@ -41,7 +41,8 @@ export const AuthProvider = ({ children }) => {
           email: userData.email,
           firstName: userData.name || "User",
           signUpDate: userData.createdAt || Date.now(),
-          PhoneNumber: Number(userData.phoneNumber) || 0
+          PhoneNumber: Number(userData.phoneNumber) || 0,
+          language: userData.language || "en-US"
         },
         {
           id: "TradingTom_Community",
@@ -67,11 +68,11 @@ export const AuthProvider = ({ children }) => {
     return { success: true };
   };
 
-  const login = (email, phoneNumber) => {
+  const login = (email, phoneNumber, language) => {
     const user = loginUser(email);
     if (!user) return { error: "User not found or invalid email" };
 
-    const userWithPhone = { ...user, phoneNumber };
+    const userWithPhone = { ...user, phoneNumber, language };
 
     localStorage.setItem("sessionUser", JSON.stringify(userWithPhone));
     setUser(userWithPhone);

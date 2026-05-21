@@ -9,9 +9,10 @@ function Login() {
   // useNavigate hook allows us to programmatically redirect the user
   const navigate = useNavigate();
 
-  // Local state to track the user's input for email and phone number
+  // Local state to track the user's input for email, phone number, and language
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [language, setLanguage] = useState("en-US");
 
   // Function called when the user clicks the "Login" button
   const handleLogin = () => {
@@ -22,7 +23,7 @@ function Login() {
     }
 
     // Attempt to log in using the function from AuthContext
-    const res = login(email, phoneNumber);
+    const res = login(email, phoneNumber, language);
 
     // If login fails, show an alert and stop
     if (res.error) {
@@ -66,6 +67,17 @@ function Login() {
           // Update the phone number state whenever the user types
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
+      </div>
+
+      <div className="form-group">
+        <label>Language</label>
+        <select
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+        >
+          <option value="en-US">English</option>
+          <option value="hi-IN">Hindi</option>
+        </select>
       </div>
 
       {/* Button to trigger handleLogin */}
