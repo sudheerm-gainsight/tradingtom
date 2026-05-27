@@ -22,13 +22,6 @@ export const AuthProvider = ({ children }) => {
     }
   });
 
-  // Identify user to PX when the app starts or refreshes
-  useEffect(() => {
-    if (user) {
-      identifyUser(user);
-    }
-  }, []);
-
 
   //  FINAL IDENTIFY FUNCTION
   const identifyUser = (userData) => {
