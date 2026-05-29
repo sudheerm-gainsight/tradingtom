@@ -1,1 +1,13 @@
-{"engagementChecksums":[],"botChecksums":[],"engFieldMappingEnabled":true,"checksumVersion":5}
+{
+    "engagementChecksums": [
+        {
+            "engagementId": "91fb3e21-522a-41e7-b954-7fd52c04996d",
+            "validChecksums": [
+                "57984ec91c012aea7c155a7b0de17091f9413bfc564c12f4cb63fe8485aa25c1"
+            ]
+        }
+    ],
+    "botChecksums": [],
+    "engFieldMappingEnabled": true,
+    "checksumVersion": 5
+}
