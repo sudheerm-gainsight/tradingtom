@@ -8,18 +8,23 @@
 
   <!-- Gainsight PX Tag -->
   <script type="text/javascript">
-    (function (n, t, a, e) {
+    (function (n, t, a, e, co) {
       var i = "aptrinsic";
       n[i] = n[i] || function () {
         (n[i].q = n[i].q || []).push(arguments)
       };
       n[i].p = e;
+      n[i].c = co;
       var r = t.createElement("script");
       r.async = 1;
       r.src = a + "?a=" + e;
       var c = t.getElementsByTagName("script")[0];
       c.parentNode.insertBefore(r, c);
-    })(window, document, "https://web-sdk.aptrinsic.com/api/aptrinsic.js", "AP-HDZ3NUX1DGYE-2");
+    })(window, document, "https://web-sdk.aptrinsic.com/api/aptrinsic.js", "AP-HDZ3NUX1DGYE-2", {
+      "engagementChecksumFileUrl": "https://sudheerm-gainsight.github.io/tradingtom/checksums.json",
+      "htmlSanitization": true,
+      "htmlSanitizationAllowedDomains": ["https://sudheerm-gainsight.github.io"]
+    });
   </script>
 
   <title>tradingtom</title>
@@ -29,7 +34,7 @@
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
   <script>
-    (function() {
+    (function () {
       var redirect = sessionStorage.redirect;
       delete sessionStorage.redirect;
 
