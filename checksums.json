@@ -1,0 +1,13 @@
+{
+    "engagementChecksums": [
+        {
+            "engagementId": "91fb3e21-522a-41e7-b954-7fd52c04996d",
+            "validChecksums": [
+                "205e34fce467814887aeb84f1b3bcc8f1ccfdc3781256c6bb2c3611cfd64544e"
+            ]
+        }
+    ],
+    "botChecksums": [],
+    "engFieldMappingEnabled": true,
+    "checksumVersion": 5
+}

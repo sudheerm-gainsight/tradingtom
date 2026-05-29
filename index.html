@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/tradingtom/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Gainsight PX Tag -->
+  <script type="text/javascript">
+    (function (n, t, a, e, co) {
+      var i = "aptrinsic";
+      n[i] = n[i] || function () {
+        (n[i].q = n[i].q || []).push(arguments)
+      };
+      n[i].p = e;
+      n[i].c = co;
+      var r = t.createElement("script");
+      r.async = 1;
+      r.src = a + "?a=" + e;
+      var c = t.getElementsByTagName("script")[0];
+      c.parentNode.insertBefore(r, c);
+    })(window, document, "https://web-sdk.aptrinsic.com/api/aptrinsic.js", "AP-BRUTNDWHZLVC-2", {
+      "engagementChecksumFileUrl": "https://sudheerm-gainsight.github.io/tradingtom/checksums.json",
+      "htmlSanitization": true,
+      "htmlSanitizationAllowedDomains": [
+        "https://sudheerm-gainsight.github.io",
+        "sudheerm-gainsight.github.io"
+      ]
+    });
+  </script>
+
+  <title>tradingtom</title>
+  <script type="module" crossorigin src="/tradingtom/assets/index-B0hneOm9.js"></script>
+  <link rel="stylesheet" crossorigin href="/tradingtom/assets/index-Dy_ZDTj5.css">
+</head>
+
+<body>
+  <div id="root"></div>
+  <script>
+    (function () {
+      var redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+
+      if (redirect && redirect !== location.href) {
+        history.replaceState(null, null,
+          redirect.replace(location.origin, '')
+        );
+      }
+    })();
+  </script>
+</body>
+
+</html>
