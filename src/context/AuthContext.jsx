@@ -35,7 +35,8 @@ export const AuthProvider = ({ children }) => {
           firstName: userData.name || "User",
           signUpDate: userData.createdAt || Date.now(),
           PhoneNumber: Number(userData.phoneNumber) || 0,
-          language: userData.language || "en-US"
+          language: userData.language || "en-US",
+          SFDCContactId: "001gK000017CPMWQA4"
         },
         {
           id: "TradingTom_Community",
