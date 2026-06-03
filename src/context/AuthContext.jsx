@@ -40,7 +40,8 @@ export const AuthProvider = ({ children }) => {
         {
           id: "TradingTom_Community",
           name: "TradingTom Platform",
-          CompanyStartYear: 2025
+          CompanyStartYear: 2025,
+          SalesforceId: "001gK000017CPMWQA4"
         }
       );
 
