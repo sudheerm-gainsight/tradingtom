@@ -10,7 +10,7 @@ function Payment() {
 
   const [courses, setCourses] = useState([]);
   const [selectedCourses, setSelectedCourses] = useState([]);
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [status, setStatus] = useState("Success");
 
   // Fetch all courses and handle pre-selection if an ID is present in the URL
@@ -21,6 +21,8 @@ function Payment() {
     if (id) {
       const courseId = Number(id);
       setSelectedCourses([courseId]);
+    } else if (allCourses.length > 0) {
+      setSelectedCourses([allCourses[0].id]);
     }
   }, [id]);
 
