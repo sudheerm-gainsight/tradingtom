@@ -8,21 +8,20 @@ function Payment() {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const [courses, setCourses] = useState([]);
-  const [selectedCourses, setSelectedCourses] = useState([]);
-  const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
+  // Synchronously initialize state to avoid empty first render and HMR issues
+  const [courses, setCourses] = useState(() => getCourses());
+  const [selectedCourses, setSelectedCourses] = useState(() => {
+    if (id) return [Number(id)];
+    const initialCourses = getCourses();
+    return initialCourses.length > 0 ? [initialCourses[0].id] : [];
+  });
+  const [date, setDate] = useState(() => new Date().toISOString().split("T")[0]);
   const [status, setStatus] = useState("Success");
 
-  // Fetch all courses and handle pre-selection if an ID is present in the URL
+  // Handle URL ID changes
   useEffect(() => {
-    const allCourses = getCourses();
-    setCourses(allCourses);
-
     if (id) {
-      const courseId = Number(id);
-      setSelectedCourses([courseId]);
-    } else if (allCourses.length > 0) {
-      setSelectedCourses([allCourses[0].id]);
+      setSelectedCourses([Number(id)]);
     }
   }, [id]);
 
