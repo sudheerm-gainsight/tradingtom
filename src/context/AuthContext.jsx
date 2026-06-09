@@ -49,6 +49,7 @@ export const AuthProvider = ({ children }) => {
     }, 500);
   };
 
+
   const signup = (data) => {
     const res = registerUser(data);
     if (res.error) return res;
